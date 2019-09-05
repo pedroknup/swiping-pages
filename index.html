@@ -10,14 +10,19 @@
   <body>
     <div class="container">
       <div></div>
-      <div style="background-color:  RGBA(0,2555,0,0.2) !important;"></div>
+      <div style="background-color:  RGBA(0,2555,0,0.2) !important;">
+        <span class="title">Home</span>
+      </div>
     </div>
+    <div class="back"><</div>
+
     <button onclick="handlerf()" id="button">swipe forward</button>
     <button onclick="handlerb()" id="button">swipe back</button>
   </body>
   <script>
     const _C = document.querySelector('.container'),
-      N = _C.children.length;
+      N = _C.children.length,
+      _title = document.querySelector('.title');
 
     let i = 0,
       x0 = null,
@@ -35,6 +40,7 @@
       _C.style.setProperty('--tx', '0px');
       _C.style.setProperty('--f', force);
       _C.classList.toggle('smooth', !(locked = false));
+      _title.classList.toggle('invisible');
     }
     function handlerb(e) {
       let speed = 1;
@@ -56,6 +62,7 @@
     function lock(e) {
       x0 = unify(e).clientX;
       _C.classList.toggle('smooth', !(locked = true));
+      _title.classList.toggle('invisible');
     }
 
     function drag(e) {
@@ -64,7 +71,9 @@
         s = Math.sign(dx),
         f = +((s * dx) / w).toFixed(2);
       if (s !== 1) return;
-      if (locked) _C.style.setProperty('--tx', `${Math.round(unify(e).clientX - x0)}px`);
+      if (locked) {
+        _C.style.setProperty('--tx', `${Math.round(unify(e).clientX - x0)}px`);
+      }
     }
 
     function move(e) {
@@ -76,10 +85,14 @@
           _C.style.setProperty('--i', (i -= s));
           f = 1 - f;
         }
-
+        // var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        // const handicap = w / 2;
         _C.style.setProperty('--tx', '0px');
         _C.style.setProperty('--f', f);
         _C.classList.toggle('smooth', !(locked = false));
+        setTimeout(() => {
+          _title.classList.toggle('invisible');
+        }, 500);
         x0 = null;
       }
     }

@@ -18,8 +18,6 @@ body {
   overflow-y: hidden;
   width: 100%;
   width: calc(var(--n) * 100%);
-  height: 50vw;
-  max-height: 100vh;
   -webkit-transform: translate(calc(var(--tx, 0px) + var(--i, 0) / var(--n) * -100%));
           transform: translate(calc(var(--tx, 0px) + var(--i, 0) / var(--n) * -100%));
 }
@@ -32,8 +30,28 @@ body {
       -ms-user-select: none;
           user-select: none;
   pointer-events: none;
+  position: relative;
   height: 500px;
   background-color: RGBA(255, 0, 0, 0.2);
+}
+
+.back {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+}
+
+.invisible {
+  display: none;
+}
+
+.title {
+  position: absolute;
+  top: 8px;
+  left: 32px;
+  text-align: left;
+  z-index: 10;
+  right: 40px;
 }
 
 button {
@@ -49,5 +67,12 @@ button {
   transition: -webkit-transform calc(var(--f, 1) * 0.5s) ease-out;
   transition: transform calc(var(--f, 1) * 0.5s) ease-out;
   transition: transform calc(var(--f, 1) * 0.5s) ease-out, -webkit-transform calc(var(--f, 1) * 0.5s) ease-out;
+}
+
+.smooth2 {
+  -webkit-transition: -webkit-transform calc(var(--f2, 1) * 0.5s) ease-out;
+  transition: -webkit-transform calc(var(--f2, 1) * 0.5s) ease-out;
+  transition: transform calc(var(--f2, 1) * 0.5s) ease-out;
+  transition: transform calc(var(--f2, 1) * 0.5s) ease-out, -webkit-transform calc(var(--f2, 1) * 0.5s) ease-out;
 }
 /*# sourceMappingURL=index.css.map */
