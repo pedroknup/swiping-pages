@@ -9,14 +9,8 @@
   </head>
   <body>
     <div class="container">
-      <img
-        src="https://images.unsplash.com/photo-1514117445516-2ecfc9c4ec90?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;ixid=eyJhcHBfaWQiOjE0NTg5fQ&amp;s=0e0b58fcf67fa6e8a010322d617e39af"
-        alt="Mountain massif, sunbathed, partly covered in show."
-      />
-      <img
-        src="https://images.unsplash.com/photo-1510325805092-2951ab330b7d?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;ixid=eyJhcHBfaWQiOjE0NTg5fQ&amp;s=017cf46443f4821a375c20e8c68e37f0"
-        alt="Tiny bird with pale brown, orange and white feathers in an evergreen tree."
-      />
+      <div></div>
+      <div style="background-color:  RGBA(0,2555,0,0.2) !important;"></div>
     </div>
     <button onclick="handlerf()" id="button">swipe forward</button>
     <button onclick="handlerb()" id="button">swipe back</button>
@@ -31,28 +25,28 @@
       w;
 
     function handlerf(e) {
-        let speed = -1;
-        let force = 0.38;
-        if ((i < N - 1 || speed > 0) && force > 0.2) {
-          _C.style.setProperty('--i', (i -= speed));
-          force = 1 - force;
-        }
+      let speed = -1;
+      let force = 0.38;
+      if ((i < N - 1 || speed > 0) && force > 0.2) {
+        _C.style.setProperty('--i', (i -= speed));
+        force = 1 - force;
+      }
 
-        _C.style.setProperty('--tx', '0px');
-        _C.style.setProperty('--f', force);
-        _C.classList.toggle('smooth', !(locked = false));
+      _C.style.setProperty('--tx', '0px');
+      _C.style.setProperty('--f', force);
+      _C.classList.toggle('smooth', !(locked = false));
     }
     function handlerb(e) {
-        let speed = 1;
-        let force = 0.38;
-        if ((i < N - 1 || speed > 0) && force > 0.2) {
-          _C.style.setProperty('--i', (i -= speed));
-          force = 1 - force;
-        }
+      let speed = 1;
+      let force = 0.38;
+      if ((i < N - 1 || speed > 0) && force > 0.2) {
+        _C.style.setProperty('--i', (i -= speed));
+        force = 1 - force;
+      }
 
-        _C.style.setProperty('--tx', '0px');
-        _C.style.setProperty('--f', force);
-        _C.classList.toggle('smooth', !(locked = false));
+      _C.style.setProperty('--tx', '0px');
+      _C.style.setProperty('--f', force);
+      _C.classList.toggle('smooth', !(locked = false));
     }
 
     function unify(e) {
@@ -66,7 +60,10 @@
 
     function drag(e) {
       e.preventDefault();
-
+      let dx = unify(e).clientX - x0,
+        s = Math.sign(dx),
+        f = +((s * dx) / w).toFixed(2);
+      if (s !== 1) return;
       if (locked) _C.style.setProperty('--tx', `${Math.round(unify(e).clientX - x0)}px`);
     }
 
@@ -75,9 +72,10 @@
         let dx = unify(e).clientX - x0,
           s = Math.sign(dx),
           f = +((s * dx) / w).toFixed(2);
-          console.log(f, s)
 
-        if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > 0.2) {
+        console.log(f, s);
+
+        if (i > 0 && s == 1 && (i < N - 1 || s > 0) && f > 0.2) {
           _C.style.setProperty('--i', (i -= s));
           f = 1 - f;
         }

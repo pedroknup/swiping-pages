@@ -24,7 +24,7 @@ body {
           transform: translate(calc(var(--tx, 0px) + var(--i, 0) / var(--n) * -100%));
 }
 
-.container img {
+.container div {
   width: 100%;
   width: calc(100% / var(--n));
   -webkit-user-select: none;
@@ -32,6 +32,8 @@ body {
       -ms-user-select: none;
           user-select: none;
   pointer-events: none;
+  height: 500px;
+  background-color: RGBA(255, 0, 0, 0.2);
 }
 
 button {
@@ -43,9 +45,9 @@ button {
 }
 
 .smooth {
-  -webkit-transition: -webkit-transform calc(var(--f, 1) * 0.7s) ease-out;
-  transition: -webkit-transform calc(var(--f, 1) * 0.7s) ease-out;
-  transition: transform calc(var(--f, 1) * 0.7s) ease-out;
-  transition: transform calc(var(--f, 1) * 0.7s) ease-out, -webkit-transform calc(var(--f, 1) * 0.7s) ease-out;
+  -webkit-transition: -webkit-transform calc(var(--f, 1) * 0.5s) ease-out;
+  transition: -webkit-transform calc(var(--f, 1) * 0.5s) ease-out;
+  transition: transform calc(var(--f, 1) * 0.5s) ease-out;
+  transition: transform calc(var(--f, 1) * 0.5s) ease-out, -webkit-transform calc(var(--f, 1) * 0.5s) ease-out;
 }
 /*# sourceMappingURL=index.css.map */
